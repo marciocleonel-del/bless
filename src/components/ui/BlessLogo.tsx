@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface BlessLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | number;
@@ -52,143 +53,87 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
       className={`relative inline-flex items-center justify-center select-none ${className}`}
       style={{ width, height }}
     >
-      <svg
-        viewBox="0 0 5000 5000"
-        width={width}
-        height={height}
-        className="overflow-visible w-full h-full"
-      >
-        <defs>
-          {/* 1. Exact Clip Path for the Letters (100% of Original Typography: B, L, E, S, S, Slogan, Heart) */}
-          <clipPath id="exactLettersClip">
-            <polygon points="956,0 5000,0 5000,5000 956,5000" />
-          </clipPath>
-
-          {/* 2. Exact Clip Path for the Butterfly Wing (Strictly to the left of the stem of B) */}
-          <clipPath id="exactWingClip">
-            <polygon points="0,0 956,0 956,5000 0,5000" />
-          </clipPath>
-
-          {/* Moving 24K Liquid Gold Shimmer Gradient for Typography */}
-          <linearGradient id="blessLetterGoldSweep" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#FFA000">
-              <animate
-                attributeName="stop-color"
-                values="#FFA000; #FFD700; #FFFDEB; #FFC400; #FFA000"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="25%" stopColor="#FFD700">
-              <animate
-                attributeName="stop-color"
-                values="#FFD700; #FFFDEB; #FFD700; #FFA000; #FFD700"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="50%" stopColor="#FFFDEB">
-              <animate
-                attributeName="stop-color"
-                values="#FFFDEB; #FFD700; #FFA000; #FFC400; #FFFDEB"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="75%" stopColor="#FFC400">
-              <animate
-                attributeName="stop-color"
-                values="#FFC400; #FFA000; #FFD700; #FFFDEB; #FFC400"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-            <stop offset="100%" stopColor="#FFA000">
-              <animate
-                attributeName="stop-color"
-                values="#FFA000; #FFD700; #FFFDEB; #FFC400; #FFA000"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </stop>
-          </linearGradient>
-
-          {/* Golden Glow Filter */}
-          <filter id="blessOriginalLettersGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="35" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
+      <div className="relative w-full h-full">
         {/* ======================================================== */}
-        {/* 1. WING GROUP: 3D FLUTTERING ANCHORED AT THE STEM OF B   */}
+        {/* 1. EXACT ORIGINAL LOGO LETTERS (100% Transparent BG)     */}
         {/* ======================================================== */}
-        <g
-          id="bless-exact-wing-group"
-          className="animate-wing-3d-perfect"
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
           style={{
-            transformOrigin: '956px 1900px',
-            transformBox: 'fill-box',
+            clipPath: 'polygon(19.12% 0%, 100% 0%, 100% 100%, 19.12% 100%)',
           }}
         >
-          {/* Exact original high-res wing image pixels */}
-          <image
-            href="/bless.png"
-            width="5000"
-            height="5000"
-            clipPath="url(#exactWingClip)"
+          <Image
+            src="/bless-transparent.png"
+            alt="Bless - Ideias que Transformam"
+            fill
+            className="object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]"
+            priority
           />
-        </g>
+        </div>
 
         {/* ======================================================== */}
-        {/* 2. LETTERS GROUP: 100% EXACT ORIGINAL TYPOGRAPHY         */}
+        {/* 2. BUTTERFLY WING ONLY (100% Transparent, 3D Flutter)    */}
+        {/* Zero background rotation - ONLY the gold lines flap!     */}
         {/* ======================================================== */}
-        <g id="bless-exact-letters-group">
-          {/* Exact original high-res letters image pixels (B, L, E, S, S, Slogan, Heart) */}
-          <image
-            href="/bless.png"
-            width="5000"
-            height="5000"
-            clipPath="url(#exactLettersClip)"
+        <div
+          id="bless-isolated-wing-3d"
+          className="absolute z-20 pointer-events-none animate-wing-3d-clean"
+          style={{
+            left: '0%',
+            top: '18%',
+            width: '20%',
+            height: '38%',
+            transformOrigin: '95.6% 52.6%',
+            perspective: '800px',
+          }}
+        >
+          <Image
+            src="/bless-wing-transparent.png"
+            alt="Bless Wing"
+            fill
+            className="object-contain filter drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
+            priority
           />
-        </g>
-      </svg>
+        </div>
 
-      {/* 3. Fluid Liquid Gold Light Shimmer Sweep Masked Over 100% of the Original Letters */}
-      <div
-        className="absolute inset-0 pointer-events-none mix-blend-color-dodge z-20"
-        style={{
-          WebkitMaskImage: 'url(/bless.png)',
-          maskImage: 'url(/bless.png)',
-          WebkitMaskSize: 'contain',
-          maskSize: 'contain',
-          WebkitMaskRepeat: 'no-repeat',
-          maskRepeat: 'no-repeat',
-          WebkitMaskPosition: 'center',
-          maskPosition: 'center',
-        }}
-      >
-        <div className="w-full h-full animate-letter-shimmer-flow" />
-      </div>
+        {/* ======================================================== */}
+        {/* 3. FLUID LIQUID GOLD LIGHT SHIMMER FLOW ACROSS LETTERS   */}
+        {/* ======================================================== */}
+        <div
+          className="absolute inset-0 pointer-events-none mix-blend-color-dodge z-30 opacity-90"
+          style={{
+            WebkitMaskImage: 'url(/bless-transparent.png)',
+            maskImage: 'url(/bless-transparent.png)',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+          }}
+        >
+          <div className="w-full h-full animate-letter-shimmer-flow" />
+        </div>
 
-      {/* 4. Secondary Specular Glistening Highlights Layer for Typography Curves */}
-      <div
-        className="absolute inset-0 pointer-events-none mix-blend-screen opacity-90 z-20"
-        style={{
-          WebkitMaskImage: 'url(/bless.png)',
-          maskImage: 'url(/bless.png)',
-          WebkitMaskSize: 'contain',
-          maskSize: 'contain',
-          WebkitMaskRepeat: 'no-repeat',
-          maskRepeat: 'no-repeat',
-          WebkitMaskPosition: 'center',
-          maskPosition: 'center',
-        }}
-      >
-        <div className="w-full h-full animate-letter-glimmer-pulse" />
+        {/* ======================================================== */}
+        {/* 4. SECONDARY SPECULAR GLISTEN ON TYPOGRAPHY EDGES        */}
+        {/* ======================================================== */}
+        <div
+          className="absolute inset-0 pointer-events-none mix-blend-screen z-30 opacity-80"
+          style={{
+            WebkitMaskImage: 'url(/bless-transparent.png)',
+            maskImage: 'url(/bless-transparent.png)',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+          }}
+        >
+          <div className="w-full h-full animate-letter-glimmer-pulse" />
+        </div>
       </div>
     </div>
   );
