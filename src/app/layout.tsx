@@ -22,6 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;700;900&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Oswald:wght@500;700&family=Pacifico&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Roboto+Mono:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="bg-[#070D1E] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-bless-gold selection:text-slate-950">
         <Header />
         <main className="flex-1">{children}</main>
