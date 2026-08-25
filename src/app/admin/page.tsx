@@ -70,27 +70,21 @@ export default function AdminDashboardPage() {
   // Product Modal Form State
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
-  const [productForm, setProductForm] = useState<Omit<Product, 'id'>>({
+  const [productForm, setProductForm] = useState({
     name: '',
     slug: '',
-    category: 'copos',
-    technique: 'laser',
-    description: '',
+    category: 'laser' as Product['category'],
+    technique: 'Gravação a Laser Fibra/CO2' as Product['technique'],
+    shortDescription: '',
+    fullDescription: '',
     basePrice: 69.9,
     minQuantity: 1,
     image: '/bless.png',
-    images: ['/bless.png'],
     featured: true,
     badge: 'Mais Vendido',
     dimensions: '18 x 9 cm',
     material: 'Aço Inox 304 com Parede Dupla',
-    customizationArea: '8 x 14 cm',
-    availableColors: ['#0A1128', '#D4AF37', '#FFFFFF', '#000000'],
-    tierDiscounts: [
-      { minQty: 10, maxQty: 49, discountPercentage: 15, label: '10 a 49 un (-15%)' },
-      { minQty: 50, maxQty: 99, discountPercentage: 25, label: '50 a 99 un (-25%)' },
-      { minQty: 100, maxQty: null, discountPercentage: 35, label: '100+ un (-35%)' },
-    ],
+    leadTime: '1 a 3 dias úteis',
   });
 
   // Settings Form State
@@ -149,24 +143,18 @@ export default function AdminDashboardPage() {
     setProductForm({
       name: '',
       slug: '',
-      category: 'copos',
-      technique: 'laser',
-      description: '',
+      category: 'laser',
+      technique: 'Gravação a Laser Fibra/CO2',
+      shortDescription: '',
+      fullDescription: '',
       basePrice: 49.9,
       minQuantity: 1,
       image: '/bless.png',
-      images: ['/bless.png'],
       featured: true,
       badge: 'Novo',
       dimensions: '15 x 8 cm',
-      material: 'Aço Inox / Cerâmica',
-      customizationArea: '8 x 10 cm',
-      availableColors: ['#0A1128', '#D4AF37', '#FFFFFF'],
-      tierDiscounts: [
-        { minQty: 10, maxQty: 49, discountPercentage: 15, label: '10 a 49 un (-15%)' },
-        { minQty: 50, maxQty: 99, discountPercentage: 25, label: '50 a 99 un (-25%)' },
-        { minQty: 100, maxQty: null, discountPercentage: 35, label: '100+ un (-35%)' },
-      ],
+      material: 'Aço Inox 304 com Parede Dupla',
+      leadTime: '1 a 3 dias úteis',
     });
     setIsProductModalOpen(true);
   };
@@ -179,18 +167,16 @@ export default function AdminDashboardPage() {
       slug: prod.slug,
       category: prod.category,
       technique: prod.technique,
-      description: prod.description,
+      shortDescription: prod.shortDescription || '',
+      fullDescription: prod.fullDescription || '',
       basePrice: prod.basePrice,
       minQuantity: prod.minQuantity,
       image: prod.image,
-      images: prod.images,
       featured: prod.featured || false,
       badge: prod.badge || '',
       dimensions: prod.dimensions || '',
       material: prod.material || '',
-      customizationArea: prod.customizationArea || '',
-      availableColors: prod.availableColors,
-      tierDiscounts: prod.tierDiscounts,
+      leadTime: prod.leadTime || '1 a 3 dias úteis',
     });
     setIsProductModalOpen(true);
   };
@@ -208,10 +194,33 @@ export default function AdminDashboardPage() {
         .replace(/ +/g, '-');
 
     if (editingProductId) {
-      updateProduct(editingProductId, { ...productForm, slug });
+      updateProduct(editingProductId, {
+        ...productForm,
+        slug,
+      });
       showToast('Produto atualizado com sucesso!');
     } else {
-      addProduct({ ...productForm, slug });
+      addProduct({
+        ...productForm,
+        slug,
+        rating: 5.0,
+        reviewCount: 1,
+        availableColors: [
+          { name: 'Preto Matte', hex: '#0A1128', laserFinishTone: 'gold' },
+          { name: 'Inox Escovado', hex: '#D4AF37', laserFinishTone: 'dark' },
+        ],
+        priceTiers: [
+          { min: 10, max: 49, discountPercent: 15, label: '10 a 49 un (-15%)' },
+          { min: 50, max: 99, discountPercent: 25, label: '50 a 99 un (-25%)' },
+          { min: 100, discountPercent: 35, label: '100+ un (-35%)' },
+        ],
+        mockup: {
+          type: 'copo',
+          printableArea: { xPercent: 20, yPercent: 20, widthPercent: 60, heightPercent: 60 },
+          hasLaserShine: productForm.technique.includes('Laser'),
+        },
+        features: ['Gravação permanente', 'Pronta entrega', 'Garantia de acabamento'],
+      });
       showToast('Novo produto cadastrado com sucesso!');
     }
     setIsProductModalOpen(false);
@@ -274,7 +283,9 @@ export default function AdminDashboardPage() {
       p.name.toLowerCase().includes(productSearch.toLowerCase()) ||
       p.category.toLowerCase().includes(productSearch.toLowerCase());
     const matchesTech =
-      productFilterTech === 'all' || p.technique === productFilterTech;
+      productFilterTech === 'all' ||
+      (productFilterTech === 'laser' && p.technique.includes('Laser')) ||
+      (productFilterTech === 'sublimation' && p.technique.includes('Sublimação'));
     return matchesSearch && matchesTech;
   });
 
@@ -660,12 +671,12 @@ export default function AdminDashboardPage() {
                         <td className="p-4">
                           <span
                             className={`px-2.5 py-1 rounded-full font-bold text-[10px] uppercase ${
-                              p.technique === 'laser'
+                              p.technique.includes('Laser')
                                 ? 'bg-bless-laser-blue/15 text-bless-laser-blue border border-bless-laser-blue/30'
                                 : 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
                             }`}
                           >
-                            {p.technique === 'laser' ? 'Gravação a Laser' : 'Sublimação HD'}
+                            {p.technique}
                           </span>
                         </td>
                         <td className="p-4 font-bold text-slate-100">{formatBRL(p.basePrice)}</td>
@@ -1177,13 +1188,10 @@ export default function AdminDashboardPage() {
                     }
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 outline-none focus:border-bless-gold"
                   >
-                    <option value="copos">Copos Térmicos</option>
-                    <option value="canecas">Canecas</option>
-                    <option value="garrafas">Garrafas Inox</option>
-                    <option value="azulejos">Azulejos Decorativos</option>
-                    <option value="chaveiros">Chaveiros Metálicos</option>
-                    <option value="adesivos">Adesivos Vinílicos</option>
-                    <option value="b2b">Kits Corporativos B2B</option>
+                    <option value="laser">Gravação a Laser</option>
+                    <option value="sublimacao">Sublimação HD</option>
+                    <option value="adesivos">Adesivos & Recorte</option>
+                    <option value="corporativo">Kits Corporativos B2B</option>
                   </select>
                 </div>
 
@@ -1194,13 +1202,14 @@ export default function AdminDashboardPage() {
                     onChange={(e) =>
                       setProductForm({
                         ...productForm,
-                        technique: e.target.value as 'laser' | 'sublimation',
+                        technique: e.target.value as Product['technique'],
                       })
                     }
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 outline-none focus:border-bless-gold font-bold text-bless-gold"
                   >
-                    <option value="laser">Gravação a Laser</option>
-                    <option value="sublimation">Sublimação HD</option>
+                    <option value="Gravação a Laser Fibra/CO2">Gravação a Laser Fibra/CO2</option>
+                    <option value="Sublimação HD">Sublimação HD</option>
+                    <option value="Recorte e Adesivo Vinílico">Recorte e Adesivo Vinílico</option>
                   </select>
                 </div>
               </div>
@@ -1233,12 +1242,23 @@ export default function AdminDashboardPage() {
               </div>
 
               <div className="space-y-1">
-                <label className="font-bold text-slate-400 uppercase">Descrição do Produto</label>
+                <label className="font-bold text-slate-400 uppercase">Descrição Curta</label>
+                <textarea
+                  rows={2}
+                  required
+                  value={productForm.shortDescription}
+                  onChange={(e) => setProductForm({ ...productForm, shortDescription: e.target.value })}
+                  placeholder="Resumo do produto para a vitrine..."
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 outline-none focus:border-bless-gold"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="font-bold text-slate-400 uppercase">Descrição Completa / Especificações</label>
                 <textarea
                   rows={3}
-                  required
-                  value={productForm.description}
-                  onChange={(e) => setProductForm({ ...productForm, description: e.target.value })}
+                  value={productForm.fullDescription}
+                  onChange={(e) => setProductForm({ ...productForm, fullDescription: e.target.value })}
                   placeholder="Informações sobre acabamento, durabilidade e especificações..."
                   className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 outline-none focus:border-bless-gold"
                 />
