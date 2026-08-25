@@ -4,7 +4,6 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
-import { DynamicLivingBackground } from '@/components/ui/DynamicLivingBackground';
 
 export const metadata: Metadata = {
   title: 'Bless Personalizados | Estúdio de Sublimação HD & Gravação a Laser',
@@ -31,10 +30,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#070D1E] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-bless-gold selection:text-slate-950 relative overflow-x-hidden">
-        <DynamicLivingBackground />
+      <body className="bg-[#070D1E] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-bless-gold selection:text-slate-950">
         <Header />
-        <main className="flex-1 relative z-10">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
         <CartDrawer />
         <WhatsAppFloat />
