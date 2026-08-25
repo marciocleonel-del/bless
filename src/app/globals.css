@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;700;900&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Oswald:wght@500;700&family=Pacifico&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Roboto+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  
+  --bg-primary: #070D1E;
+  --bg-secondary: #0D1630;
+  --bg-card: #121E40;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --accent-gold: #CFA758;
+  --accent-laser: #00D4FF;
+}
+
+.light-theme {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #F1F5F9;
+  --text-primary: #0A1128;
+  --text-secondary: #475569;
+  --accent-gold: #B0883C;
+  --accent-laser: #0284C7;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #070D1E;
+  color: #F8FAFC;
+  overflow-x: hidden;
+}
+
+.light-theme body {
+  background-color: #F8FAFC;
+  color: #0A1128;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(13, 22, 48, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(207, 167, 88, 0.15);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(207, 167, 88, 0.25);
+}
+
+.glass-card {
+  background: rgba(18, 30, 64, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card:hover {
+  border-color: rgba(207, 167, 88, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(207, 167, 88, 0.2);
+}
+
+/* Metallic Laser Text Effect */
+.laser-silver-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 40%, #9CA3AF 70%, #F3F4F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.laser-gold-text {
+  background: linear-gradient(135deg, #FFF6D6 0%, #D4AF37 40%, #AA771C 70%, #F3E5AB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.laser-glow-border {
+  position: relative;
+}
+.laser-glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #00D4FF, #D4AF37, #00D4FF);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #070D1E;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+  border: 1px solid rgba(207, 167, 88, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CFA758;
+}
+
+/* Canvas Mockup Container */
+.mockup-canvas-wrapper {
+  user-select: none;
+  touch-action: none;
+}
+
+/* ======================================================== */
+/* BUTTERFLY WING 3D FLUTTER & MOVING GOLD SHIMMER          */
+/* ======================================================== */
+
+@keyframes wingFlutter {
+  0% {
+    transform: perspective(600px) rotateY(0deg) rotateZ(0deg) skewY(0deg) scaleX(1);
+  }
+  25% {
+    transform: perspective(600px) rotateY(28deg) rotateZ(-1.5deg) skewY(-2deg) scaleX(0.92);
+  }
+  50% {
+    transform: perspective(600px) rotateY(8deg) rotateZ(0.5deg) skewY(-0.5deg) scaleX(0.98);
+  }
+  75% {
+    transform: perspective(600px) rotateY(38deg) rotateZ(-2.5deg) skewY(-3deg) scaleX(0.88);
+  }
+  100% {
+    transform: perspective(600px) rotateY(0deg) rotateZ(0deg) skewY(0deg) scaleX(1);
+  }
+}
+
+@keyframes wingFlutterIcon {
+  0% {
+    transform: perspective(400px) rotateY(0deg) scaleX(1);
+  }
+  50% {
+    transform: perspective(400px) rotateY(32deg) scaleX(0.9);
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg) scaleX(1);
+  }
+}
+
+.animate-wing-flutter {
+  animation: wingFlutter 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  transform-origin: 98px 230px;
+  will-change: transform;
+}
+
+.animate-butterfly-wing {
+  animation: wingFlutterIcon 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  transform-origin: 70px 80px;
+  will-change: transform;
+}
+
+/* Moving Liquid Gold Typography Text */
+.gold-shimmer-text {
+  background: linear-gradient(
+    110deg,
+    #9A7730 0%,
+    #D4AF37 20%,
+    #FFFBEB 45%,
+    #D4AF37 60%,
+    #9A7730 80%,
+    #FFFBEB 95%,
+    #D4AF37 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldTextFlow 3.5s linear infinite;
+}
+
+@keyframes goldTextFlow {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+

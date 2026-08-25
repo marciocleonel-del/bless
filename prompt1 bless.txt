@@ -1,0 +1,55 @@
+Desenvolva um aplicativo web completo, responsivo e com todos os recursos de comércio eletrônico e personalização para um estúdio de sublimação e gravação a laser.
+
+Stack & UI Toolkit:
+
+Framework: React / Next.js (App Router), TypeScript, Tailwind CSS, Lucide Icons, Framer Motion, componentes Radix UI / Shadcn UI.
+
+Gerenciamento de estado e formulário: React Hook Form, validação Zod, API de contexto / Zustand para o carrinho e personalizador interativo.
+
+Arquitetura principal e módulos avançados:
+
+Personalizador de produto interativo e carregamento de arquivos:
+
+Live Preview Module: User selects a base product (e.g., Caneca Cerâmica, Copo Térmico Laser, Azulejo Decorativo, Chaveiro Acrílico).
+
+Aplicativo de upload de arquivos com recurso de arrastar e soltar, aceitando PNG, JPG, PDF, SVG, AI e EPS, com validação de tamanho e geração de pré-visualização.
+
+Controles de personalização: entrada de texto (com seletor de família de fontes), seletor de cores para áreas de impressão e uma tela de posicionamento interativa para posicionar/dimensionar logotipos carregados na maquete do produto selecionado.
+
+Ajuste de preço em tempo real com base nas opções de personalização (1 lado vs. 2 lados, texto a laser vs. impressão em toda a superfície).
+
+Catálogo dinâmico filtrável e calculadora de preços por níveis:
+
+Categories: Sublimação HD, Gravação a Laser (Metal/Madeira/Acrílico), Adesivos Vinílicos, Brindes Corporativos (B2B).
+
+Lógica de desconto por volume dinâmico: Exibe descontos por níveis (ex.: 1-9 unidades, 10-49 unidades, 50-100+ unidades) com atualizações em tempo real do preço unitário e do preço total.
+
+Fluxo do carrinho de compras e finalização da compra:
+
+Gaveta deslizante do carrinho exibindo detalhes do item, notas de personalização, miniaturas dos recursos carregados e detalhamento do pedido.
+
+Página de finalização de compra em várias etapas:
+
+Informações do cliente e endereço de entrega (com integração de preenchimento automático de CEP/código postal brasileiro).
+
+Simulação/Integração de Gateway de Pagamento (Lógica pronta para Stripe/Mercado Pago: Instant Pix com simulação de geração de QR Code, formulário de cartão de crédito com marcadores de tokenização e Boleto).
+
+Opção de fallback para WhatsApp: Clique em "Finalizar e Enviar Arte via WhatsApp" para formatar todo o pedido, o texto personalizado e os links de upload para armazenamento em nuvem em uma mensagem automática do WhatsApp.
+
+Seções Herói, Vitrine e Confiança:
+
+Hero Section: Dynamic CTA buttons ("Personalizar Agora", "Orçamento em Lote").
+
+Análise Tecnológica: Comparação lado a lado da qualidade da Sublimação HD versus a Gravação a Laser de Fibra/CO2.
+
+Step-by-Step Workflow: 1. Escolha -> 2. Envie a Arte -> 3. Aprove a Prévia -> 4. Produção & Envio.
+
+Carrossel de perguntas frequentes e depoimentos em formato de acordeão.
+
+Ações flutuantes e simulação de estado de administração/pedido:
+
+Botão de ajuda rápida do WhatsApp fixo na parte inferior.
+
+Persistência no LocalStorage para o carrinho do usuário, arquivos personalizados enviados (como URLs/blobs de dados) e estado de cotação pendente.
+
+Diretrizes de UI/UX: Paleta de cores moderna e limpa para os modos claro e escuro, responsividade para dispositivos móveis pronta para produção, interações suaves de arrastar e soltar na tela e campos de formulário acessíveis.
