@@ -98,9 +98,9 @@ export const useAdminStore = create<AdminStore>()(
       isAuthenticated: false,
       user: null,
       adminCredentials: {
-        username: 'admin',
-        passwordHash: 'bless2026', // Initial password
-        email: 'marcio@bless.com.br',
+        username: 'ireneleonel',
+        passwordHash: '070315',
+        email: 'ireneleonel@bless.com.br',
       },
 
       login: (username, password) => {
@@ -111,7 +111,7 @@ export const useAdminStore = create<AdminStore>()(
         ) {
           const user: AdminUser = {
             username: adminCredentials.username,
-            name: 'Administrador Bless',
+            name: 'Irene Leonel',
             email: adminCredentials.email,
             role: 'admin',
           };

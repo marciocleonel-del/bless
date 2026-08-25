@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Sparkles, Wand2, Layers, HelpCircle, Phone, Menu, X, Search, ShieldCheck } from 'lucide-react';
+import { ShoppingBag, Sparkles, Wand2, Layers, HelpCircle, Phone, Menu, X, Search, ShieldCheck, Lock } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { BlessLogo } from '@/components/ui/BlessLogo';
 import { BLESS_PHONE_NUMBER } from '@/utils/whatsappHelper';
@@ -143,6 +143,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTracker }) => {
                 </span>
               )}
             </button>
+
+            {/* Discreet Admin Lock Button */}
+            <Link
+              href="/admin"
+              aria-label="Acesso Administrativo"
+              title="Acesso Administrativo"
+              className="p-2.5 rounded-xl bg-slate-900/50 hover:bg-slate-800 border border-slate-800/80 hover:border-bless-gold/40 text-slate-400 hover:text-bless-gold transition-all"
+            >
+              <Lock className="w-4 h-4" />
+            </Link>
 
             {/* Mobile Menu Hamburger */}
             <button

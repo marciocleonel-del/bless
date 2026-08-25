@@ -136,18 +136,10 @@ export default function AdminLoginPage() {
             </button>
           </form>
 
-          {/* Initial Credentials Hint Box */}
-          <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200/90 text-xs space-y-1">
-            <div className="flex items-center gap-1.5 font-bold text-amber-300">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Acesso Inicial do Administrador:</span>
-            </div>
-            <p className="text-[11px]">
-              Usuário: <strong className="text-white font-mono bg-black/40 px-1.5 py-0.5 rounded">admin</strong> | Senha: <strong className="text-white font-mono bg-black/40 px-1.5 py-0.5 rounded">bless2026</strong>
-            </p>
-            <p className="text-[10px] text-amber-300/70 pt-0.5">
-              *Você poderá alterar seu usuário e senha quando quiser na aba de Segurança do painel.
-            </p>
+          {/* Security Notice */}
+          <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400/80" />
+            <span>Acesso criptografado e restrito à administração</span>
           </div>
 
           <div className="text-center pt-2">
