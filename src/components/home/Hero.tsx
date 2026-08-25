@@ -83,16 +83,13 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-5 relative flex items-center justify-center">
             {/* Main Brand Showcase Card */}
             <div className="relative w-full max-w-md rounded-3xl p-6 sm:p-8 bg-[#0A1128]/90 border border-bless-gold/40 shadow-2xl backdrop-blur-xl space-y-6">
-              {/* Official Animated Brand Logo with 3D Wing Flutter & Moving Gold Shimmer */}
+              {/* Official Animated Brand Logo with Original Wing & Lettering Movement */}
               <div className="flex flex-col items-center justify-center text-center pb-6 border-b border-slate-800 relative">
-                <div className="relative p-3 rounded-3xl bg-gradient-to-b from-[#0F1C3F] to-[#070D1E] border border-bless-gold/40 shadow-gold-glow flex items-center justify-center">
+                <div className="relative p-2 sm:p-4 rounded-3xl bg-gradient-to-b from-[#0F1C3F] to-[#070D1E] border border-bless-gold/40 shadow-gold-glow flex items-center justify-center">
                   <BlessLogo
-                    size={300}
+                    size={320}
                     variant="full"
-                    animateWing={true}
-                    animateGold={true}
                     showSlogan={true}
-                    showOptionSelector={true}
                   />
                 </div>
               </div>
