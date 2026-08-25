@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import { useAdminStore } from '@/store/useAdminStore';
 import { Product } from '@/types';
+import { AdminOrder } from '@/types/admin';
 import { formatBRL } from '@/utils/formatters';
 import { BlessLogo } from '@/components/ui/BlessLogo';
 
