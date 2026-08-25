@@ -119,98 +119,36 @@ body {
 }
 
 /* ======================================================== */
-/* 3D BUTTERFLY WING FLUTTERING ON THE LETTER B             */
+/* 3D BUTTERFLY WING FLUTTERING (ONLY THE WING MOVES)       */
 /* ======================================================== */
 
-@keyframes wing3DFlutter {
+@keyframes wing3DFlap {
   0% {
-    transform: perspective(800px) rotateY(0deg) rotateZ(0deg) scaleX(1);
+    transform: perspective(600px) rotateY(0deg) scaleX(1);
   }
   20% {
-    transform: perspective(800px) rotateY(38deg) rotateZ(-1.5deg) scaleX(0.9);
+    transform: perspective(600px) rotateY(38deg) scaleX(0.9);
   }
   45% {
-    transform: perspective(800px) rotateY(12deg) rotateZ(0.5deg) scaleX(0.97);
+    transform: perspective(600px) rotateY(10deg) scaleX(0.98);
   }
   70% {
-    transform: perspective(800px) rotateY(44deg) rotateZ(-2deg) scaleX(0.86);
+    transform: perspective(600px) rotateY(44deg) scaleX(0.85);
   }
   100% {
-    transform: perspective(800px) rotateY(0deg) rotateZ(0deg) scaleX(1);
+    transform: perspective(600px) rotateY(0deg) scaleX(1);
   }
 }
 
-.animate-wing-3d-flutter {
-  animation: wing3DFlutter 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+.animate-wing-3d-flap {
+  animation: wing3DFlap 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
   will-change: transform;
 }
 
 /* ======================================================== */
-/* LETTERING MOVEMENT & FLUID GOLDEN SHIMMER LIGHT WAVES    */
+/* MOVING LIQUID GOLD LIGHT ON TYPOGRAPHY                   */
 /* ======================================================== */
 
-/* 1. Primary Smooth Gold Sheen Traveling Across All Letters */
-@keyframes letterShimmerFlow {
-  0% {
-    transform: translateX(-150%) skewX(-20deg);
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 196, 0, 0.2) 20%,
-      rgba(255, 215, 0, 0.85) 45%,
-      rgba(255, 255, 255, 0.95) 50%,
-      rgba(255, 215, 0, 0.85) 55%,
-      rgba(255, 160, 0, 0.2) 80%,
-      transparent 100%
-    );
-  }
-  50% {
-    transform: translateX(50%) skewX(-20deg);
-  }
-  100% {
-    transform: translateX(250%) skewX(-20deg);
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 196, 0, 0.2) 20%,
-      rgba(255, 215, 0, 0.85) 45%,
-      rgba(255, 255, 255, 0.95) 50%,
-      rgba(255, 215, 0, 0.85) 55%,
-      rgba(255, 160, 0, 0.2) 80%,
-      transparent 100%
-    );
-  }
-}
-
-.animate-letter-shimmer-flow {
-  animation: letterShimmerFlow 3.4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
-  background-size: 200% 100%;
-}
-
-/* 2. Secondary Specular Glimmer Pulse on Typography Contours */
-@keyframes letterGlimmerPulse {
-  0%, 100% {
-    opacity: 0.15;
-    filter: brightness(1);
-    transform: scale(1);
-  }
-  35% {
-    opacity: 0.85;
-    filter: brightness(1.4) drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
-    transform: scale(1.008);
-  }
-  70% {
-    opacity: 0.3;
-    filter: brightness(1.1);
-  }
-}
-
-.animate-letter-glimmer-pulse {
-  animation: letterGlimmerPulse 3.8s ease-in-out infinite;
-  background: radial-gradient(circle at 60% 45%, rgba(255, 253, 235, 0.7) 0%, rgba(255, 215, 0, 0.3) 40%, transparent 70%);
-}
-
-/* 3. Moving Liquid Vibrant Sun-Gold Typography Text */
 .gold-shimmer-text {
   background: linear-gradient(
     110deg,
