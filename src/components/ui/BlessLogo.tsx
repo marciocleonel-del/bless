@@ -19,7 +19,6 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
   className = '',
   variant = 'full',
 }) => {
-  // Dimension mapping
   let width = 240;
   let height = 240;
 
@@ -51,7 +50,7 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
     }
   }
 
-  // If icon-only variant
+  // Icon Only (for Navbar & Mobile)
   if (variant === 'icon') {
     return (
       <div className={`relative inline-flex items-center justify-center select-none ${className}`}>
@@ -64,136 +63,140 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
           className="overflow-visible"
         >
           <defs>
-            {/* Animated Gold Shimmer Gradient */}
-            <linearGradient id="blessGoldShimmerIcon" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#9A7730">
+            {/* Vibrant Yellow-Gold Moving Shimmer Gradient */}
+            <linearGradient id="blessVibrantGoldIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFA000">
                 {animateGold && (
                   <animate
                     attributeName="stop-color"
-                    values="#9A7730; #D4AF37; #FFFBEB; #D4AF37; #9A7730"
-                    dur="3s"
+                    values="#FFA000; #FFD700; #FFF9C4; #FFC400; #FFA000"
+                    dur="2.8s"
                     repeatCount="indefinite"
                   />
                 )}
               </stop>
-              <stop offset="25%" stopColor="#D4AF37">
+              <stop offset="25%" stopColor="#FFD700">
                 {animateGold && (
                   <animate
                     attributeName="stop-color"
-                    values="#D4AF37; #FFFBEB; #D4AF37; #9A7730; #D4AF37"
-                    dur="3s"
+                    values="#FFD700; #FFF9C4; #FFD700; #FFA000; #FFD700"
+                    dur="2.8s"
                     repeatCount="indefinite"
                   />
                 )}
               </stop>
-              <stop offset="50%" stopColor="#FFFBEB">
+              <stop offset="50%" stopColor="#FFF9C4">
                 {animateGold && (
                   <animate
                     attributeName="stop-color"
-                    values="#FFFBEB; #D4AF37; #9A7730; #D4AF37; #FFFBEB"
-                    dur="3s"
+                    values="#FFF9C4; #FFD700; #FFA000; #FFC400; #FFF9C4"
+                    dur="2.8s"
                     repeatCount="indefinite"
                   />
                 )}
               </stop>
-              <stop offset="75%" stopColor="#D4AF37">
+              <stop offset="75%" stopColor="#FFC400">
                 {animateGold && (
                   <animate
                     attributeName="stop-color"
-                    values="#D4AF37; #9A7730; #D4AF37; #FFFBEB; #D4AF37"
-                    dur="3s"
+                    values="#FFC400; #FFA000; #FFD700; #FFF9C4; #FFC400"
+                    dur="2.8s"
                     repeatCount="indefinite"
                   />
                 )}
               </stop>
-              <stop offset="100%" stopColor="#9A7730">
+              <stop offset="100%" stopColor="#FFA000">
                 {animateGold && (
                   <animate
                     attributeName="stop-color"
-                    values="#9A7730; #D4AF37; #FFFBEB; #D4AF37; #9A7730"
-                    dur="3s"
+                    values="#FFA000; #FFD700; #FFF9C4; #FFC400; #FFA000"
+                    dur="2.8s"
                     repeatCount="indefinite"
                   />
                 )}
               </stop>
             </linearGradient>
 
-            {/* Glowing filter */}
-            <filter id="goldGlowIcon" x="-20%" y="-20%" width="140%" height="140%">
+            <filter id="vibrantGoldGlowIcon" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
             </filter>
           </defs>
 
-          {/* Animated Butterfly Wing Group */}
+          {/* Butterfly Wing with 3D Flutter */}
           <g
-            className={animateWing ? 'animate-butterfly-wing origin-[70px_80px]' : ''}
+            className={animateWing ? 'animate-butterfly-wing' : ''}
             style={{
-              transformOrigin: '70px 80px',
+              transformOrigin: '76px 82px',
               transformBox: 'fill-box',
             }}
           >
-            {/* Upper Wing Outer Contour */}
+            {/* Upper Wing */}
             <path
-              d="M 68 76 C 58 52, 42 22, 22 14 C 18 12, 14 16, 17 22 C 24 38, 36 60, 68 76 Z"
-              fill="url(#blessGoldShimmerIcon)"
-              fillOpacity="0.12"
-              stroke="url(#blessGoldShimmerIcon)"
-              strokeWidth="2.5"
+              d="M 74 76 C 60 48, 40 18, 16 12 C 12 11, 8 15, 11 20 C 20 40, 36 62, 74 76 Z"
+              fill="url(#blessVibrantGoldIcon)"
+              fillOpacity="0.15"
+              stroke="url(#blessVibrantGoldIcon)"
+              strokeWidth="2.8"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Upper Wing Inner Filigree Veins */}
+            {/* Wing Veins */}
             <path
-              d="M 22 14 C 30 32, 44 54, 68 76 M 26 28 C 36 44, 48 58, 62 70 M 34 42 C 45 52, 54 62, 64 68 M 20 22 C 28 30, 42 46, 52 64"
-              stroke="url(#blessGoldShimmerIcon)"
-              strokeWidth="1.6"
+              d="M 16 12 C 28 34, 44 56, 74 76 M 22 28 C 36 46, 52 62, 68 72 M 32 44 C 44 54, 56 64, 70 72"
+              stroke="url(#blessVibrantGoldIcon)"
+              strokeWidth="1.8"
               strokeLinecap="round"
             />
-            {/* Lower Wing Outer Contour */}
+            {/* Lower Wing */}
             <path
-              d="M 68 84 C 48 88, 22 96, 18 114 C 16 122, 24 126, 32 120 C 44 112, 58 98, 68 84 Z"
-              fill="url(#blessGoldShimmerIcon)"
-              fillOpacity="0.12"
-              stroke="url(#blessGoldShimmerIcon)"
-              strokeWidth="2.5"
+              d="M 74 84 C 52 90, 20 102, 16 122 C 14 130, 24 134, 34 126 C 48 116, 62 100, 74 84 Z"
+              fill="url(#blessVibrantGoldIcon)"
+              fillOpacity="0.15"
+              stroke="url(#blessVibrantGoldIcon)"
+              strokeWidth="2.8"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Lower Wing Inner Veins */}
+            {/* Lower Wing Veins */}
             <path
-              d="M 28 116 C 38 106, 50 94, 68 84 M 36 122 C 46 112, 56 98, 66 88 M 22 110 C 34 100, 48 90, 60 84"
-              stroke="url(#blessGoldShimmerIcon)"
-              strokeWidth="1.5"
+              d="M 28 122 C 40 110, 54 96, 74 84 M 38 128 C 50 114, 62 100, 72 90"
+              stroke="url(#blessVibrantGoldIcon)"
+              strokeWidth="1.8"
               strokeLinecap="round"
             />
           </g>
 
           {/* Letter B */}
-          <path
-            d="M 68 28 L 78 28 C 96 28, 108 38, 108 52 C 108 62, 100 70, 90 74 C 104 78, 114 88, 114 104 C 114 122, 98 132, 78 132 L 68 132 Z"
-            stroke="url(#blessGoldShimmerIcon)"
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-          <path
-            d="M 76 34 L 76 126 M 76 74 L 92 74"
-            stroke="url(#blessGoldShimmerIcon)"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-          />
+          <g filter="url(#vibrantGoldGlowIcon)">
+            <path
+              d="M 74 24 L 88 24 C 110 24, 122 36, 122 52 C 122 64, 114 74, 102 78 C 118 82, 128 94, 128 112 C 128 132, 110 144, 88 144 L 74 144 Z"
+              stroke="url(#blessVibrantGoldIcon)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+            <path
+              d="M 82 28 L 82 140 M 82 78 L 102 78"
+              stroke="url(#blessVibrantGoldIcon)"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+          </g>
         </svg>
       </div>
     );
   }
 
-  // Full High-Fidelity Animated Logo
+  // Full Logo with Exact Original Serif Proportions & Vibrant Yellow-Gold
   return (
     <div className={`relative flex flex-col items-center justify-center select-none ${className}`}>
       <svg
-        viewBox="0 0 500 500"
+        viewBox="0 0 540 460"
         width={width}
         height={height}
         fill="none"
@@ -201,63 +204,63 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
         className="overflow-visible"
       >
         <defs>
-          {/* Sweeping Moving Gold Shimmer Gradient */}
-          <linearGradient id="blessGoldShimmer" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#9A7730">
+          {/* Vibrant Vivid 24K Yellow-Gold Shimmer Gradient */}
+          <linearGradient id="blessVibrantGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFA000">
               {animateGold && (
                 <animate
                   attributeName="stop-color"
-                  values="#9A7730; #D4AF37; #FFFBEB; #D4AF37; #9A7730"
-                  dur="3.2s"
+                  values="#FFA000; #FFD700; #FFFDEB; #FFC400; #FFA000"
+                  dur="3s"
                   repeatCount="indefinite"
                 />
               )}
             </stop>
-            <stop offset="25%" stopColor="#D4AF37">
+            <stop offset="25%" stopColor="#FFD700">
               {animateGold && (
                 <animate
                   attributeName="stop-color"
-                  values="#D4AF37; #FFFBEB; #D4AF37; #9A7730; #D4AF37"
-                  dur="3.2s"
+                  values="#FFD700; #FFFDEB; #FFD700; #FFA000; #FFD700"
+                  dur="3s"
                   repeatCount="indefinite"
                 />
               )}
             </stop>
-            <stop offset="50%" stopColor="#FFFBEB">
+            <stop offset="50%" stopColor="#FFFDEB">
               {animateGold && (
                 <animate
                   attributeName="stop-color"
-                  values="#FFFBEB; #D4AF37; #9A7730; #D4AF37; #FFFBEB"
-                  dur="3.2s"
+                  values="#FFFDEB; #FFD700; #FFA000; #FFC400; #FFFDEB"
+                  dur="3s"
                   repeatCount="indefinite"
                 />
               )}
             </stop>
-            <stop offset="75%" stopColor="#D4AF37">
+            <stop offset="75%" stopColor="#FFC400">
               {animateGold && (
                 <animate
                   attributeName="stop-color"
-                  values="#D4AF37; #9A7730; #D4AF37; #FFFBEB; #D4AF37"
-                  dur="3.2s"
+                  values="#FFC400; #FFA000; #FFD700; #FFFDEB; #FFC400"
+                  dur="3s"
                   repeatCount="indefinite"
                 />
               )}
             </stop>
-            <stop offset="100%" stopColor="#9A7730">
+            <stop offset="100%" stopColor="#FFA000">
               {animateGold && (
                 <animate
                   attributeName="stop-color"
-                  values="#9A7730; #D4AF37; #FFFBEB; #D4AF37; #9A7730"
-                  dur="3.2s"
+                  values="#FFA000; #FFD700; #FFFDEB; #FFC400; #FFA000"
+                  dur="3s"
                   repeatCount="indefinite"
                 />
               )}
             </stop>
           </linearGradient>
 
-          {/* Glowing Ambient Light Filter */}
-          <filter id="blessGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          {/* Radiant Gold Glow Filter */}
+          <filter id="vibrantGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -266,147 +269,153 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
         </defs>
 
         {/* ======================================================== */}
-        {/* 1. BUTTERFLY WING (Moving 3D Flapping Motion)            */}
+        {/* 1. BUTTERFLY WING WITH VIBRANT 3D FLUTTERING MOTION      */}
         {/* ======================================================== */}
         <g
-          id="butterfly-wing-group"
+          id="butterfly-wing-vibrant"
           className={animateWing ? 'animate-wing-flutter' : ''}
           style={{
-            transformOrigin: '98px 230px',
+            transformOrigin: '112px 210px',
             transformBox: 'fill-box',
           }}
         >
-          {/* Upper Wing Main Boundary */}
+          {/* Upper Wing Outer Loop */}
           <path
-            d="M 96 218 C 82 170, 60 110, 24 94 C 18 91, 12 99, 16 108 C 28 136, 48 185, 96 218 Z"
-            fill="url(#blessGoldShimmer)"
-            fillOpacity="0.1"
-            stroke="url(#blessGoldShimmer)"
-            strokeWidth="3.2"
+            d="M 112 198 C 96 142, 68 76, 28 54 C 18 49, 10 58, 16 70 C 30 106, 54 164, 112 198 Z"
+            fill="url(#blessVibrantGold)"
+            fillOpacity="0.14"
+            stroke="url(#blessVibrantGold)"
+            strokeWidth="3.6"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          {/* Upper Wing Venation Lines */}
+          {/* Upper Wing Detailed Filigree Veins */}
           <path
-            d="M 24 94 C 36 128, 58 174, 96 218 M 32 120 C 48 152, 68 182, 90 206 M 44 148 C 60 172, 76 194, 92 210 M 20 106 C 32 124, 52 158, 70 190 M 56 168 C 70 188, 82 202, 94 214"
-            stroke="url(#blessGoldShimmer)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-
-          {/* Lower Wing Main Boundary */}
-          <path
-            d="M 96 238 C 68 246, 32 260, 26 288 C 22 300, 36 308, 48 298 C 66 284, 84 262, 96 238 Z"
-            fill="url(#blessGoldShimmer)"
-            fillOpacity="0.1"
-            stroke="url(#blessGoldShimmer)"
-            strokeWidth="3.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* Lower Wing Venation Lines */}
-          <path
-            d="M 38 294 C 54 278, 72 258, 96 238 M 48 302 C 64 286, 78 266, 92 248 M 30 282 C 48 266, 68 250, 86 240 M 60 290 C 74 274, 86 256, 94 242"
-            stroke="url(#blessGoldShimmer)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-
-          {/* Wing Swirl / Antenna Details */}
-          <path
-            d="M 96 216 C 90 198, 80 178, 68 168 C 62 162, 54 164, 56 172 C 60 182, 74 200, 96 222"
-            stroke="url(#blessGoldShimmer)"
+            d="M 28 54 C 44 94, 70 148, 112 198 M 38 86 C 56 122, 80 158, 106 186 M 52 118 C 70 146, 88 170, 108 190 M 24 68 C 36 90, 60 130, 82 168 M 68 142 C 82 164, 96 182, 110 194"
+            stroke="url(#blessVibrantGold)"
             strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+
+          {/* Lower Wing Outer Loop */}
+          <path
+            d="M 112 218 C 78 228, 36 244, 30 278 C 24 294, 40 304, 56 292 C 78 274, 98 248, 112 218 Z"
+            fill="url(#blessVibrantGold)"
+            fillOpacity="0.14"
+            stroke="url(#blessVibrantGold)"
+            strokeWidth="3.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Lower Wing Filigree Veins */}
+          <path
+            d="M 44 286 C 64 266, 84 242, 112 218 M 56 296 C 74 276, 92 252, 108 230 M 34 270 C 56 250, 80 232, 100 220 M 70 282 C 86 264, 100 242, 110 224"
+            stroke="url(#blessVibrantGold)"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+
+          {/* Antenna / Swirl */}
+          <path
+            d="M 112 196 C 104 174, 92 150, 78 138 C 70 130, 60 134, 62 144 C 68 156, 84 178, 112 202"
+            stroke="url(#blessVibrantGold)"
+            strokeWidth="2.4"
             strokeLinecap="round"
           />
         </g>
 
         {/* ======================================================== */}
-        {/* 2. LETTERING "B L E S S" (Continuous Golden Shimmer)     */}
+        {/* 2. ORIGINAL TYPOGRAPHY "B L E S S" IN VIBRANT GOLD       */}
         {/* ======================================================== */}
-        <g id="bless-letters-group" filter="url(#blessGoldGlow)">
-          {/* LETTER B (Merged with wing swirl) */}
+        <g id="bless-original-typography" filter="url(#vibrantGoldGlow)">
+          {/* LETTER B */}
           <path
-            d="M 96 142 L 114 142 C 146 142, 168 160, 168 184 C 168 202, 154 216, 138 222 C 160 228, 178 244, 178 274 C 178 304, 150 324, 114 324 L 96 324 Z"
-            stroke="url(#blessGoldShimmer)"
-            strokeWidth="5"
+            d="M 112 114 L 134 114 C 172 114, 198 136, 198 166 C 198 188, 182 204, 162 210 C 188 218, 210 238, 210 274 C 210 310, 176 334, 134 334 L 112 334 Z"
+            stroke="url(#blessVibrantGold)"
+            strokeWidth="6"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-          {/* B Stem and Swirl curve */}
+          {/* Stem of B with graceful curve */}
           <path
-            d="M 106 148 L 106 318 M 106 222 L 138 222 M 106 142 C 90 142, 80 162, 80 180 C 80 200, 94 220, 106 222"
-            stroke="url(#blessGoldShimmer)"
-            strokeWidth="4.5"
+            d="M 124 120 L 124 328 M 124 210 L 162 210 M 124 114 C 104 114, 92 138, 92 160 C 92 184, 108 208, 124 210"
+            stroke="url(#blessVibrantGold)"
+            strokeWidth="5.5"
             strokeLinecap="round"
           />
 
-          {/* LETTER L */}
-          <g transform="translate(186, 0)">
+          {/* LETTER L (Original Serif Style) */}
+          <g transform="translate(222, 0)">
+            {/* Vertical stem with serifs */}
             <path
-              d="M 10 142 L 20 142 L 20 314 L 56 314 L 56 324 L 6 324 L 6 314 L 10 314 Z"
-              fill="url(#blessGoldShimmer)"
+              d="M 12 114 L 28 114 L 28 322 L 68 322 L 68 334 L 6 334 L 6 322 L 12 322 Z"
+              fill="url(#blessVibrantGold)"
             />
-            {/* Serif top */}
-            <path d="M 4 142 L 26 142" stroke="url(#blessGoldShimmer)" strokeWidth="3" strokeLinecap="round" />
+            {/* Top Serif */}
+            <path d="M 6 114 L 34 114" stroke="url(#blessVibrantGold)" strokeWidth="4" strokeLinecap="round" />
           </g>
 
-          {/* LETTER E */}
-          <g transform="translate(254, 0)">
+          {/* LETTER E (Original Serif Style) */}
+          <g transform="translate(300, 0)">
             <path
-              d="M 10 142 L 52 142 L 52 152 L 22 152 L 22 226 L 46 226 L 46 236 L 22 236 L 22 314 L 54 314 L 54 324 L 10 324 Z"
-              fill="url(#blessGoldShimmer)"
+              d="M 12 114 L 62 114 L 62 126 L 28 126 L 28 214 L 54 214 L 54 226 L 28 226 L 28 322 L 64 322 L 64 334 L 12 334 Z"
+              fill="url(#blessVibrantGold)"
             />
             {/* Top & Bottom serifs */}
-            <path d="M 4 142 L 24 142 M 4 324 L 24 324" stroke="url(#blessGoldShimmer)" strokeWidth="3" strokeLinecap="round" />
-          </g>
-
-          {/* LETTER S (First) */}
-          <g transform="translate(322, 0)">
             <path
-              d="M 48 168 C 42 152, 32 142, 18 142 C 6 142, -2 152, -2 166 C -2 182, 10 194, 28 206 C 48 218, 56 234, 56 256 C 56 280, 38 300, 14 300 C -2 300, -12 288, -16 270 L -6 266 C -2 280, 4 288, 14 288 C 26 288, 34 276, 34 258 C 34 242, 24 230, 6 218 C -12 204, -20 190, -20 168 C -20 146, -4 130, 18 130 C 34 130, 46 140, 52 158 Z"
-              fill="url(#blessGoldShimmer)"
-              transform="translate(16, 12)"
+              d="M 6 114 L 28 114 M 6 334 L 28 334 M 58 114 L 62 134 M 60 314 L 64 334"
+              stroke="url(#blessVibrantGold)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
             />
           </g>
 
-          {/* LETTER S (Second) */}
-          <g transform="translate(394, 0)">
+          {/* LETTER S (First - High-contrast Didot Curve) */}
+          <g transform="translate(378, 0)">
             <path
-              d="M 48 168 C 42 152, 32 142, 18 142 C 6 142, -2 152, -2 166 C -2 182, 10 194, 28 206 C 48 218, 56 234, 56 256 C 56 280, 38 300, 14 300 C -2 300, -12 288, -16 270 L -6 266 C -2 280, 4 288, 14 288 C 26 288, 34 276, 34 258 C 34 242, 24 230, 6 218 C -12 204, -20 190, -20 168 C -20 146, -4 130, 18 130 C 34 130, 46 140, 52 158 Z"
-              fill="url(#blessGoldShimmer)"
-              transform="translate(16, 12)"
+              d="M 54 146 C 48 128, 36 116, 20 116 C 6 116, -4 128, -4 144 C -4 162, 8 176, 28 190 C 50 204, 62 222, 62 248 C 62 276, 42 300, 14 300 C -4 300, -16 286, -20 264 L -8 260 C -4 276, 4 286, 16 286 C 30 286, 40 272, 40 250 C 40 232, 28 218, 8 204 C -12 188, -24 172, -24 146 C -24 122, -6 102, 20 102 C 38 102, 52 114, 58 134 Z"
+              fill="url(#blessVibrantGold)"
+              transform="translate(18, 14)"
+            />
+          </g>
+
+          {/* LETTER S (Second - High-contrast Didot Curve) */}
+          <g transform="translate(458, 0)">
+            <path
+              d="M 54 146 C 48 128, 36 116, 20 116 C 6 116, -4 128, -4 144 C -4 162, 8 176, 28 190 C 50 204, 62 222, 62 248 C 62 276, 42 300, 14 300 C -4 300, -16 286, -20 264 L -8 260 C -4 276, 4 286, 16 286 C 30 286, 40 272, 40 250 C 40 232, 28 218, 8 204 C -12 188, -24 172, -24 146 C -24 122, -6 102, 20 102 C 38 102, 52 114, 58 134 Z"
+              fill="url(#blessVibrantGold)"
+              transform="translate(18, 14)"
             />
           </g>
         </g>
 
         {/* ======================================================== */}
-        {/* 3. SLOGAN "IDEIAS QUE TRANSFORMAM" & HEART               */}
+        {/* 3. SLOGAN "IDEIAS QUE TRANSFORMAM" & GOLDEN HEART        */}
         {/* ======================================================== */}
         {showSlogan && (
-          <g id="bless-slogan-group" filter="url(#blessGoldGlow)">
-            {/* Slogan Text with Moving Gold Fill */}
+          <g id="bless-slogan-vibrant" filter="url(#vibrantGoldGlow)">
+            {/* Slogan Text with Moving Vibrant Gold */}
             <text
-              x="250"
-              y="384"
+              x="270"
+              y="392"
               textAnchor="middle"
-              fill="url(#blessGoldShimmer)"
+              fill="url(#blessVibrantGold)"
               fontFamily="'Montserrat', 'Inter', sans-serif"
-              fontSize="16.5"
+              fontSize="17.5"
               fontWeight="600"
-              letterSpacing="0.42em"
+              letterSpacing="0.44em"
               className="uppercase"
             >
               IDEIAS QUE TRANSFORMAM
             </text>
 
-            {/* Glowing Golden Heart */}
+            {/* Radiant Golden Heart */}
             <path
-              d="M 250 422 C 248 420, 234 406, 234 396 C 234 390, 239 385, 245 385 C 248 385, 250 387, 250 388 C 250 387, 252 385, 255 385 C 261 385, 266 390, 266 396 C 266 406, 252 420, 250 422 Z"
-              fill="url(#blessGoldShimmer)"
+              d="M 270 430 C 268 428, 252 412, 252 400 C 252 393, 258 387, 265 387 C 268 387, 270 389, 270 390 C 270 389, 272 387, 275 387 C 282 387, 288 393, 288 400 C 288 412, 272 428, 270 430 Z"
+              fill="url(#blessVibrantGold)"
               transform="translate(0, 18)"
               className="animate-pulse origin-center"
             />
