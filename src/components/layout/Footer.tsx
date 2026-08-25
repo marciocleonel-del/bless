@@ -208,8 +208,16 @@ export const Footer: React.FC = () => {
             <span className="px-2 py-1 rounded bg-emerald-900/60 border border-emerald-700/60 text-emerald-300 font-bold text-[10px]">WhatsApp Direto</span>
           </div>
 
-          <div>
-            &copy; {new Date().getFullYear()} Bless Personalizados. Todos os direitos reservados.
+          <div className="flex items-center gap-3">
+            <span>&copy; {new Date().getFullYear()} Bless Personalizados. Todos os direitos reservados.</span>
+            <span className="text-slate-700">•</span>
+            <Link
+              href="/admin"
+              className="text-slate-500 hover:text-bless-gold transition-colors inline-flex items-center gap-1 font-medium"
+            >
+              <Lock className="w-3 h-3" />
+              <span>Painel Admin</span>
+            </Link>
           </div>
         </div>
       </div>

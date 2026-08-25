@@ -5,15 +5,19 @@ import { PRODUCTS_DATA } from '@/data/productsData';
 import { ProductCard } from './ProductCard';
 import { ProductCategory } from '@/types';
 import { Search, Filter, Sparkles, Layers, Flame, Tag } from 'lucide-react';
+import { useAdminStore } from '@/store/useAdminStore';
 
 export const ProductCatalog: React.FC = () => {
+  const { products: storeProducts } = useAdminStore();
+  const allProducts = storeProducts && storeProducts.length > 0 ? storeProducts : PRODUCTS_DATA;
+
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | 'todos'>('todos');
   const [selectedTechnique, setSelectedTechnique] = useState<'todas' | 'laser' | 'sublimacao'>('todas');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'destaque' | 'menor_preco' | 'maior_preco'>('destaque');
 
   const filteredProducts = useMemo(() => {
-    return PRODUCTS_DATA.filter((product) => {
+    return allProducts.filter((product) => {
       // Category filter
       if (selectedCategory !== 'todos' && product.category !== selectedCategory) {
         return false;
