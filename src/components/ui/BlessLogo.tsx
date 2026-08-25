@@ -8,6 +8,8 @@ interface BlessLogoProps {
   showSlogan?: boolean;
   className?: string;
   variant?: 'full' | 'icon' | 'badge';
+  animateWing?: boolean;
+  animateGold?: boolean;
 }
 
 export const BlessLogo: React.FC<BlessLogoProps> = ({
