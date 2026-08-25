@@ -56,7 +56,7 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
         style={{ width, height }}
       >
         <div className="relative w-full h-full">
-          {/* Exact Pristine Original Logo Image */}
+          {/* Base Logo Image */}
           <Image
             src="/bless.png"
             alt="Bless Logo"
@@ -65,9 +65,26 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
             priority
           />
 
-          {/* Smooth Golden Sheen Movement across the letters */}
+          {/* 3D Fluttering Butterfly Wing on the original art */}
           <div
-            className="absolute inset-0 pointer-events-none mix-blend-color-dodge z-10"
+            className="absolute inset-0 pointer-events-none animate-wing-3d-flutter z-10"
+            style={{
+              clipPath: 'polygon(0% 22%, 27.6% 22%, 27.6% 56%, 0% 56%)',
+              transformOrigin: '27.6% 40%',
+            }}
+          >
+            <Image
+              src="/bless.png"
+              alt="Bless Wing 3D"
+              fill
+              className="object-contain filter drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
+              priority
+            />
+          </div>
+
+          {/* Golden Sheen Movement across the letters */}
+          <div
+            className="absolute inset-0 pointer-events-none mix-blend-color-dodge z-20"
             style={{
               WebkitMaskImage: 'url(/bless.png)',
               maskImage: 'url(/bless.png)',
@@ -86,27 +103,44 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
     );
   }
 
-  // Full Logo with Exact Original Wing & Animated Lettering Movement
+  // Full Logo with Exact Original Image + 3D Animated Wing + Golden Letter Movement
   return (
     <div className={`relative flex flex-col items-center justify-center select-none ${className}`}>
       <div
         className="relative flex items-center justify-center overflow-visible"
         style={{ width, height }}
       >
-        {/* Container for the logo */}
         <div className="relative w-full h-full group">
-          {/* 1. Exact Original Logo Base Artwork (Pristine Wing & Lettering) */}
+          {/* 1. Base Pristine Original Logo Image */}
           <Image
             src="/bless.png"
             alt="Bless - Ideias que Transformam"
             fill
-            className="object-contain drop-shadow-[0_0_20px_rgba(255,215,0,0.2)]"
+            className="object-contain drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]"
             priority
           />
 
-          {/* 2. Primary Luminous Golden Light Wave Moving Across the Letters */}
+          {/* 2. 3D Fluttering Butterfly Wing (Seamlessly Anchored to the Letter B Stem) */}
           <div
-            className="absolute inset-0 pointer-events-none mix-blend-color-dodge z-10"
+            id="bless-original-wing-3d"
+            className="absolute inset-0 pointer-events-none animate-wing-3d-flutter z-10"
+            style={{
+              clipPath: 'polygon(0% 22%, 27.6% 22%, 27.6% 56%, 0% 56%)',
+              transformOrigin: '27.6% 40%',
+            }}
+          >
+            <Image
+              src="/bless.png"
+              alt="Bless Wing"
+              fill
+              className="object-contain filter drop-shadow-[0_0_12px_rgba(255,215,0,0.6)]"
+              priority
+            />
+          </div>
+
+          {/* 3. Primary Luminous Golden Light Wave Moving Across the Letters */}
+          <div
+            className="absolute inset-0 pointer-events-none mix-blend-color-dodge z-20"
             style={{
               WebkitMaskImage: 'url(/bless.png)',
               maskImage: 'url(/bless.png)',
@@ -121,7 +155,7 @@ export const BlessLogo: React.FC<BlessLogoProps> = ({
             <div className="w-full h-full animate-letter-shimmer-flow" />
           </div>
 
-          {/* 3. Secondary Radiant Specular Reflection Passing Over the Letters */}
+          {/* 4. Secondary Radiant Specular Reflection Passing Over the Letters */}
           <div
             className="absolute inset-0 pointer-events-none mix-blend-screen opacity-90 z-20"
             style={{
