@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ShoppingBag, Sparkles, Wand2, Layers, HelpCircle, Phone, Menu, X, Search, ShieldCheck } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { BlessLogo } from '@/components/ui/BlessLogo';
+import { BLESS_PHONE_NUMBER } from '@/utils/whatsappHelper';
 
 interface HeaderProps {
   onOpenTracker?: () => void;
@@ -247,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTracker }) => {
 
           <div className="p-4 border-t border-slate-800 bg-[#070D1E]">
             <a
-              href="https://wa.me/5511999999999"
+              href={`https://wa.me/${BLESS_PHONE_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors"

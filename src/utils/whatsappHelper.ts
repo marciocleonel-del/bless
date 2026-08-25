@@ -1,8 +1,8 @@
 import { CartItem, CustomerAddress, CustomerInfo, ShippingOption } from '@/types';
 import { formatBRL } from './formatters';
 
-export const BLESS_PHONE_NUMBER = '5511999999999'; // Default support phone
-export const BLESS_PHONE_DISPLAY = '(11) 99999-9999';
+export const BLESS_PHONE_NUMBER = '5511914317959';
+export const BLESS_PHONE_DISPLAY = '(11) 91431-7959';
 
 export function generateWhatsAppOrderUrl(params: {
   orderId: string;
